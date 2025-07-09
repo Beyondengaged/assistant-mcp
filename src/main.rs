@@ -42,5 +42,9 @@ async fn main() -> Result<(), AppError> {
     let transport = ByteTransport::new(stdin(), stdout());
 
     tracing::info!("Server initialized and ready to handle requests");
-    server.run(transport).await.map_err(AppError::from)
+    server
+  .run(transport)
+  .await
+  .inspect_err(|e| tracing::error!("Server run failed: {:?}", e))  // Add this
+  .map_err(AppError::from)
 }
