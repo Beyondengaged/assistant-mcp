@@ -20,5 +20,5 @@ tokio-test = "0.4.4"
 mockito = "1.4.0"
 
 [[bin]]
-name = "webdealerpro-assistant-mcp"
+name = "assistant-mcp"
 path = "src/main.rs"
