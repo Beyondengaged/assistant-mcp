@@ -45,6 +45,9 @@ async fn main() -> Result<(), AppError> {
     server
   .run(transport)
   .await
-  .inspect_err(|e| tracing::error!("Server run failed: {:?}", e))  // Add this
+  .inspect_err(|e| {
+    eprintln!("❌ Server run failed: {:?}", e);  // <- Forces print to stderr
+    tracing::error!("❌ Server run failed: {:?}", e);
+})
   .map_err(AppError::from)
 }
